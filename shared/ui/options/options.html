@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FillKit Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="options-container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <div class="header-icon">
+            <img
+              src="../assets/logo.svg"
+              alt="FillKit"
+              width="48"
+              height="48"
+            />
+          </div>
+          <div class="header-text">
+            <h1>FillKit Settings</h1>
+            <p>Configure form autofill across all websites</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button
+            class="btn-theme"
+            id="themeToggle"
+            title="Toggle theme"
+            aria-label="Toggle theme"
+          >
+            <!-- Sun icon (shown in dark mode) -->
+            <svg
+              class="theme-icon-light"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+              ></path>
+            </svg>
+            <!-- Moon icon (shown in light mode) -->
+            <svg
+              class="theme-icon-dark"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              style="display: none"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              ></path>
+            </svg>
+          </button>
+          <button class="btn btn-primary" id="saveBtn">
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              ></path>
+            </svg>
+            Save Changes
+          </button>
+        </div>
+      </header>
+
+      <!-- Status Message -->
+      <div id="statusMessage" style="display: none"></div>
+
+      <!-- Tabs Navigation -->
+      <div class="tabs">
+        <button class="tab active" data-tab="general">General</button>
+        <button class="tab" data-tab="autofill">Autofill</button>
+        <button class="tab" data-tab="widget">Widget</button>
+        <button class="tab" data-tab="shortcuts">Shortcuts</button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="content">
+        <!-- ============================================
+           GENERAL TAB
+           ============================================ -->
+        <div class="tab-content active" id="general">
+          <div class="card">
+            <div class="card-header">
+              <h3>Core Settings</h3>
+              <p class="card-description">
+                Configure how FillKit generates and fills form data
+              </p>
+            </div>
+            <div class="card-content">
+              <!-- Fill Mode -->
+              <div class="form-group">
+                <label class="form-label" for="mode">Fill Mode</label>
+                <select id="mode">
+                  <option value="valid">
+                    Valid &mdash; Generate data that passes validation
+                  </option>
+                  <option value="invalid">
+                    Invalid &mdash; Generate data for edge case testing
+                  </option>
+                </select>
+                <span class="help-text"
+                  >Choose whether to generate valid or invalid test data</span
+                >
+              </div>
+
+              <!-- Locale -->
+              <div class="form-group">
+                <label class="form-label" for="locale">Locale</label>
+                <select id="locale">
+                  <option value="af_ZA">&#x1F1FF;&#x1F1E6; Afrikaans</option>
+                  <option value="ar">&#x1F1F8;&#x1F1E6; Arabic</option>
+                  <option value="hy">&#x1F1E6;&#x1F1F2; Armenian</option>
+                  <option value="az">&#x1F1E6;&#x1F1FF; Azerbaijani</option>
+                  <option value="bn_BD">&#x1F1E7;&#x1F1E9; Bengali</option>
+                  <option value="zh_CN">
+                    &#x1F1E8;&#x1F1F3; Chinese (Simplified)
+                  </option>
+                  <option value="zh_TW">
+                    &#x1F1F9;&#x1F1FC; Chinese (Traditional)
+                  </option>
+                  <option value="hr">&#x1F1ED;&#x1F1F7; Croatian</option>
+                  <option value="cs_CZ">&#x1F1E8;&#x1F1FF; Czech</option>
+                  <option value="da">&#x1F1E9;&#x1F1F0; Danish</option>
+                  <option value="dv">&#x1F1F2;&#x1F1FB; Dhivehi</option>
+                  <option value="nl">&#x1F1F3;&#x1F1F1; Dutch</option>
+                  <option value="en" selected>
+                    &#x1F1EC;&#x1F1E7; English
+                  </option>
+                  <option value="eo">&#x1F30D; Esperanto</option>
+                  <option value="fi">&#x1F1EB;&#x1F1EE; Finnish</option>
+                  <option value="fr">&#x1F1EB;&#x1F1F7; French</option>
+                  <option value="ka_GE">&#x1F1EC;&#x1F1EA; Georgian</option>
+                  <option value="de">&#x1F1E9;&#x1F1EA; German</option>
+                  <option value="el">&#x1F1EC;&#x1F1F7; Greek</option>
+                  <option value="he">&#x1F1EE;&#x1F1F1; Hebrew</option>
+                  <option value="hu">&#x1F1ED;&#x1F1FA; Hungarian</option>
+                  <option value="id_ID">&#x1F1EE;&#x1F1E9; Indonesian</option>
+                  <option value="it">&#x1F1EE;&#x1F1F9; Italian</option>
+                  <option value="ja">&#x1F1EF;&#x1F1F5; Japanese</option>
+                  <option value="ko">&#x1F1F0;&#x1F1F7; Korean</option>
+                  <option value="ku_ckb">
+                    &#x1F1EE;&#x1F1F6; Kurdish (Sorani)
+                  </option>
+                  <option value="ku_kmr_latin">
+                    &#x1F1F9;&#x1F1F7; Kurdish (Kurmanji)
+                  </option>
+                  <option value="lv">&#x1F1F1;&#x1F1FB; Latvian</option>
+                  <option value="mk">&#x1F1F2;&#x1F1F0; Macedonian</option>
+                  <option value="ne">&#x1F1F3;&#x1F1F5; Nepali</option>
+                  <option value="nb_NO">&#x1F1F3;&#x1F1F4; Norwegian</option>
+                  <option value="fa">&#x1F1EE;&#x1F1F7; Persian</option>
+                  <option value="pl">&#x1F1F5;&#x1F1F1; Polish</option>
+                  <option value="pt_BR">
+                    &#x1F1E7;&#x1F1F7; Portuguese (Brazil)
+                  </option>
+                  <option value="pt_PT">
+                    &#x1F1F5;&#x1F1F9; Portuguese (Portugal)
+                  </option>
+                  <option value="ro">&#x1F1F7;&#x1F1F4; Romanian</option>
+                  <option value="ru">&#x1F1F7;&#x1F1FA; Russian</option>
+                  <option value="sr_RS_latin">
+                    &#x1F1F7;&#x1F1F8; Serbian
+                  </option>
+                  <option value="sk">&#x1F1F8;&#x1F1F0; Slovak</option>
+                  <option value="sl_SI">&#x1F1F8;&#x1F1EE; Slovenian</option>
+                  <option value="es">&#x1F1EA;&#x1F1F8; Spanish</option>
+                  <option value="sv">&#x1F1F8;&#x1F1EA; Swedish</option>
+                  <option value="ta_IN">&#x1F1EE;&#x1F1F3; Tamil</option>
+                  <option value="th">&#x1F1F9;&#x1F1ED; Thai</option>
+                  <option value="tr">&#x1F1F9;&#x1F1F7; Turkish</option>
+                  <option value="uk">&#x1F1FA;&#x1F1E6; Ukrainian</option>
+                  <option value="ur">&#x1F1F5;&#x1F1F0; Urdu</option>
+                  <option value="uz_UZ_latin">
+                    &#x1F1FA;&#x1F1FF; Uzbek (Latin)
+                  </option>
+                  <option value="vi">&#x1F1FB;&#x1F1F3; Vietnamese</option>
+                  <option value="cy">
+                    &#x1F3F4;&#xE0067;&#xE0062;&#xE0077;&#xE006C;&#xE0073;&#xE007F;
+                    Welsh
+                  </option>
+                  <option value="yo_NG">&#x1F1F3;&#x1F1EC; Yoruba</option>
+                  <option value="zu_ZA">&#x1F1FF;&#x1F1E6; Zulu</option>
+                </select>
+                <span class="help-text"
+                  >Language/region for generated names, addresses, and phone
+                  numbers</span
+                >
+              </div>
+
+              <!-- Email Domain -->
+              <div class="form-group">
+                <label class="form-label" for="emailDomain">Email Domain</label>
+                <input type="text" id="emailDomain" placeholder="example.com" />
+                <span class="help-text"
+                  >Domain for generated email addresses (e.g.,
+                  example.com)</span
+                >
+              </div>
+
+              <!-- Seed -->
+              <div class="form-group">
+                <label class="form-label" for="seed">Seed</label>
+                <input
+                  type="number"
+                  id="seed"
+                  placeholder="Leave empty for random"
+                  min="0"
+                  step="1"
+                />
+                <span class="help-text"
+                  >Fixed seed for reproducible fills (leave empty for random
+                  data)</span
+                >
+              </div>
+
+              <div class="grid grid-cols-2">
+                <!-- Refill -->
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="refill" />
+                    <span class="toggle-label">Allow Refill</span>
+                  </label>
+                  <span class="help-text">Overwrite already-filled fields</span>
+                </div>
+
+                <!-- Watch Mode -->
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="watchMode" />
+                    <span class="toggle-label">Watch Mode</span>
+                  </label>
+                  <span class="help-text"
+                    >Auto-fill new forms as they appear</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================
+           AUTOFILL TAB
+           ============================================ -->
+        <div class="tab-content" id="autofill">
+          <!-- Scope -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Autofill Scope</h3>
+              <p class="card-description">
+                Control which elements FillKit will autofill
+              </p>
+            </div>
+            <div class="card-content">
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="includeOutsideForms" />
+                  <span class="toggle-label">Include Fields Outside Forms</span>
+                </label>
+                <span class="help-text"
+                  >Autofill input fields not inside
+                  <code>&lt;form&gt;</code> tags</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Selectors -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Custom Selectors</h3>
+              <p class="card-description">
+                Fine-tune which elements to include or exclude
+              </p>
+            </div>
+            <div class="card-content">
+              <div class="form-group">
+                <label class="form-label" for="includeSelectors"
+                  >Include Selectors</label
+                >
+                <textarea
+                  id="includeSelectors"
+                  placeholder=".custom-input, [data-form-field]"
+                  rows="3"
+                ></textarea>
+                <span class="help-text"
+                  >CSS selectors to explicitly include (comma-separated)</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="excludeSelectors"
+                  >Exclude Selectors</label
+                >
+                <textarea
+                  id="excludeSelectors"
+                  placeholder=".no-autofill, [data-no-fill]"
+                  rows="3"
+                ></textarea>
+                <span class="help-text"
+                  >CSS selectors to explicitly exclude (comma-separated)</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Field Overrides -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Field Overrides</h3>
+              <p class="card-description">
+                Override specific field values with custom data
+              </p>
+            </div>
+            <div class="card-content">
+              <div class="form-group">
+                <label class="form-label" for="overrides"
+                  >Overrides (JSON)</label
+                >
+                <textarea
+                  id="overrides"
+                  placeholder='{"email": "test@example.com", "#username": "testuser"}'
+                  rows="6"
+                  spellcheck="false"
+                ></textarea>
+                <span class="help-text"
+                  >JSON object mapping semantic types or CSS selectors to
+                  values</span
+                >
+              </div>
+
+              <div class="alert alert-info">
+                <div>
+                  <h4>Override Format</h4>
+                  <p>
+                    Use semantic field types:
+                    <code>{"email": "test@example.com"}</code>
+                  </p>
+                  <p>
+                    Or CSS selectors: <code>{"#specific-field": "value"}</code>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================
+           WIDGET TAB
+           ============================================ -->
+        <div class="tab-content" id="widget">
+          <div class="card">
+            <div class="card-header">
+              <h3>Widget Settings</h3>
+              <p class="card-description">
+                Configure the FillKit widget appearance
+              </p>
+            </div>
+            <div class="card-content">
+              <!-- Show Widget -->
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="uiEnabled" checked />
+                  <span class="toggle-label">Show Widget</span>
+                </label>
+                <span class="help-text"
+                  >Display the FillKit widget on web pages</span
+                >
+              </div>
+
+              <!-- Position -->
+              <div class="form-group">
+                <label class="form-label" for="widgetPosition">Position</label>
+                <select id="widgetPosition">
+                  <option value="bottom.center">Bottom Center</option>
+                  <option value="top.center">Top Center</option>
+                  <option value="bottom.left">Bottom Left</option>
+                  <option value="bottom.right">Bottom Right</option>
+                  <option value="left.center">Left Center</option>
+                  <option value="right.center">Right Center</option>
+                </select>
+                <span class="help-text"
+                  >Where the widget appears on the page</span
+                >
+              </div>
+
+              <!-- Fill Mode -->
+              <div class="form-group">
+                <label class="form-label">Fill Mode</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="fillMode"
+                      value="widget"
+                      checked
+                    />
+                    <span>Widget</span>
+                    <span class="help-text">Click widget to fill forms</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="fillMode" value="inline" />
+                    <span>Inline</span>
+                    <span class="help-text"
+                      >Fill buttons appear next to each field</span
+                    >
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================
+           SHORTCUTS TAB
+           ============================================ -->
+        <div class="tab-content" id="shortcuts">
+          <div class="card">
+            <div class="card-header">
+              <h3>Keyboard Shortcuts</h3>
+              <p class="card-description">
+                All shortcuts are handled by the FillKit SDK
+              </p>
+            </div>
+            <div class="card-content">
+              <table class="shortcuts-table">
+                <thead>
+                  <tr>
+                    <th>Action</th>
+                    <th>Shortcut</th>
+                  </tr>
+                </thead>
+                <tbody id="shortcutsBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>
+          FillKit Extension v1.0.0 &middot;
+          <a href="https://fillkit.dev" target="_blank">fillkit.dev</a> &middot;
+          <a href="https://github.com/fillkit/sdk" target="_blank">GitHub</a>
+          &middot;
+          <a href="https://fillkit.dev/privacy" target="_blank">Privacy</a>
+          &middot;
+          <a href="https://fillkit.dev/terms" target="_blank">Terms</a>
+        </p>
+        <p class="footer-copyright">
+          &copy; 2025-2026
+          <a href="https://claviscore.com" target="_blank">ClavisCore LLC</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "name": "@fillkit/chrome-extension",
+  "version": "1.0.0",
+  "description": "FillKit Chrome extension — smart form autofill with 150+ field types, 50+ locales, and valid/invalid modes for developers, QA, and demos.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "cd .. && npm run build:chrome",
+    "watch": "cd .. && node scripts/build.cjs --target chrome --watch",
+    "package": "node scripts/package.cjs",
+    "clean": "rm -rf dist packages"
+  },
+  "keywords": [
+    "fillkit",
+    "autofill",
+    "form-autofill",
+    "form-filling",
+    "test-data",
+    "faker",
+    "chrome-extension",
+    "developer-tools",
+    "qa-testing",
+    "demo"
+  ],
+  "author": "Justin Dah-kenangnon <dah.kenangnon@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fillkit/in-browser.git",
+    "directory": "chrome"
+  },
+  "bugs": {
+    "url": "https://github.com/fillkit/in-browser/issues"
+  },
+  "homepage": "https://fillkit.dev",
+  "devDependencies": {
+    "archiver": "^7.0.0"
+  }
+}

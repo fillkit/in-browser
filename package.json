@@ -1,0 +1,53 @@
+{
+  "name": "@fillkit/in-browser",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "FillKit browser extensions — smart form autofill for developers, QA, and demos.",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:check": "eslint . --max-warnings 0",
+    "format": "prettier --write \"**/*.{js,json,md,css,html}\"",
+    "format:check": "prettier --check \"**/*.{js,json,md,css,html}\"",
+    "validate": "npm run lint:check && npm run format:check",
+    "cm": "git-cz",
+    "prepare": "husky",
+    "build": "npm run build:chrome && npm run build:firefox",
+    "build:chrome": "node scripts/build.cjs --target chrome",
+    "build:firefox": "node scripts/build.cjs --target firefox",
+    "build:icons": "node scripts/generate-icons.cjs",
+    "clean": "rm -rf chrome/dist firefox/dist"
+  },
+  "author": "Justin Dah-kenangnon <dah.kenangnon@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fillkit/in-browser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fillkit/in-browser/issues"
+  },
+  "homepage": "https://fillkit.dev",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/cz-commitlint": "^20.1.0",
+    "@eslint/js": "^9.39.0",
+    "@fillkit/core": "^2.0.1",
+    "commitizen": "^4.3.1",
+    "esbuild": "^0.27.0",
+    "eslint": "^9.39.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.8.0",
+    "sharp": "^0.34.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  }
+}

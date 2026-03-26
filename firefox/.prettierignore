@@ -1,0 +1,6 @@
+dist/
+node_modules/
+web-ext-artifacts/
+*.min.js
+*.min.css
+package-lock.json

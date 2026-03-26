@@ -1,0 +1,42 @@
+{
+  "name": "@fillkit/firefox-extension",
+  "version": "1.0.0",
+  "description": "FillKit Firefox extension — smart form autofill with 150+ field types, 50+ locales, and valid/invalid modes for developers, QA, and demos.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "cd .. && npm run build:firefox",
+    "watch": "cd .. && node scripts/build.cjs --target firefox --watch",
+    "start": "web-ext run --source-dir=dist",
+    "package": "web-ext build --source-dir=dist",
+    "sign": "web-ext sign --source-dir=dist",
+    "clean": "rm -rf dist web-ext-artifacts",
+    "lint:web-ext": "web-ext lint --source-dir=dist"
+  },
+  "keywords": [
+    "fillkit",
+    "autofill",
+    "form-autofill",
+    "form-filling",
+    "test-data",
+    "faker",
+    "firefox-extension",
+    "developer-tools",
+    "qa-testing",
+    "demo"
+  ],
+  "author": "Justin Dah-kenangnon <dah.kenangnon@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fillkit/in-browser.git",
+    "directory": "firefox"
+  },
+  "bugs": {
+    "url": "https://github.com/fillkit/in-browser/issues"
+  },
+  "homepage": "https://fillkit.dev",
+  "devDependencies": {
+    "web-ext": "^10.0.0"
+  }
+}
