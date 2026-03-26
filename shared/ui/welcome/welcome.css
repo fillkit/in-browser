@@ -1,0 +1,206 @@
+/**
+ * FillKit Welcome Page — Scientific Minimal Aesthetic
+ * Matches popup.css / options.css design tokens
+ * Dark by default, switches via prefers-color-scheme
+ */
+
+/* Dark theme (default) */
+:root {
+  --fk-bg: oklch(0.18 0.012 260);
+  --fk-fg: oklch(0.92 0.005 260);
+  --fk-primary: oklch(0.7 0.18 260);
+  --fk-primary-fg: oklch(0.98 0.002 260);
+  --fk-border: oklch(0.32 0.015 260);
+  --fk-muted: oklch(0.28 0.015 260);
+  --fk-card: oklch(0.22 0.01 260);
+  --fk-muted-fg: oklch(0.68 0.01 260);
+  --fk-font-sans:
+    'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --fk-font-mono:
+    'Geist Mono', ui-monospace, 'SF Mono', Monaco, 'Consolas', monospace;
+  --fk-radius: 0;
+}
+
+/* Light theme via OS preference */
+@media (prefers-color-scheme: light) {
+  :root {
+    --fk-bg: oklch(0.98 0.002 260);
+    --fk-fg: oklch(0.18 0.012 260);
+    --fk-primary: oklch(0.55 0.22 260);
+    --fk-primary-fg: oklch(0.98 0.002 260);
+    --fk-border: oklch(0.88 0.005 260);
+    --fk-muted: oklch(0.95 0.003 260);
+    --fk-card: oklch(1 0 0);
+    --fk-muted-fg: oklch(0.45 0.01 260);
+  }
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: var(--fk-font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+  color: var(--fk-fg);
+  background: var(--fk-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.welcome-container {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Header */
+.welcome-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.welcome-logo {
+  display: block;
+}
+
+.welcome-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--fk-font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fk-fg);
+}
+
+.text-primary {
+  color: var(--fk-primary);
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--fk-muted-fg);
+  font-family: var(--fk-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Steps */
+.steps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  background: var(--fk-card);
+  border: 1px solid var(--fk-border);
+}
+
+.step-badge {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--fk-font-mono);
+  color: var(--fk-primary-fg);
+  background: var(--fk-primary);
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.step-label {
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--fk-font-mono);
+  color: var(--fk-fg);
+}
+
+.step-desc {
+  font-size: 12px;
+  color: var(--fk-muted-fg);
+  line-height: 1.4;
+}
+
+/* CTA */
+.cta-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--fk-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fk-primary-fg);
+  background: var(--fk-primary);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--fk-primary);
+  outline-offset: 2px;
+}
+
+.hint {
+  font-size: 11px;
+  font-family: var(--fk-font-mono);
+  color: var(--fk-muted-fg);
+  text-align: center;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

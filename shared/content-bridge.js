@@ -19,12 +19,62 @@ export function createContentBridge(FillKitClass) {
   let instance = null;
   let currentSettings = null;
   let initialized = false;
+  let initializing = false;
+  let formWatcherObserver = null;
+
+  /**
+   * Check if the current page has any <form> elements.
+   * @returns {boolean}
+   */
+  function hasForms() {
+    return document.querySelectorAll('form').length > 0;
+  }
+
+  /**
+   * Set up a MutationObserver that watches for <form> elements being added
+   * to the DOM. When one appears, tears down the watcher and initializes the SDK.
+   */
+  function watchForForms() {
+    if (formWatcherObserver) return;
+    formWatcherObserver = new MutationObserver(mutations => {
+      for (const mutation of mutations) {
+        for (const node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+          if (
+            node.tagName === 'FORM' ||
+            (node.querySelector && node.querySelector('form'))
+          ) {
+            teardownFormWatcher();
+            initSDK().catch(err =>
+              console.error('[FillKit Extension] Form watcher init failed:', err)
+            );
+            return;
+          }
+        }
+      }
+    });
+    formWatcherObserver.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  /**
+   * Disconnect the form-watcher MutationObserver.
+   */
+  function teardownFormWatcher() {
+    if (formWatcherObserver) {
+      formWatcherObserver.disconnect();
+      formWatcherObserver = null;
+    }
+  }
 
   /**
    * Initialize the SDK based on current extension settings.
    */
   async function initSDK() {
-    if (initialized) return;
+    if (initialized || initializing) return;
+    initializing = true;
 
     try {
       const response = await sendMessage({ type: MSG.GET_SETTINGS });
@@ -44,6 +94,12 @@ export function createContentBridge(FillKitClass) {
       if (existing && existing.source === 'page' && existing.instance) {
         instance = existing.instance;
         initialized = true;
+        return;
+      }
+
+      // Defer SDK init until page has at least one <form>
+      if (!hasForms()) {
+        watchForForms();
         return;
       }
 
@@ -74,6 +130,8 @@ export function createContentBridge(FillKitClass) {
       console.error('[FillKit Extension] Initialization failed:', error);
       initialized = false;
       instance = null;
+    } finally {
+      initializing = false;
     }
   }
 
@@ -164,6 +222,7 @@ export function createContentBridge(FillKitClass) {
    * Destroy the SDK instance and reset state.
    */
   async function destroySDK() {
+    teardownFormWatcher();
     if (uiConfigUnsub) {
       uiConfigUnsub();
       uiConfigUnsub = null;
@@ -189,7 +248,7 @@ export function createContentBridge(FillKitClass) {
     const isEnabled = newSettings.enabled;
     currentSettings = newSettings;
 
-    // Toggled off → destroy
+    // Toggled off → destroy (destroySDK tears down form watcher too)
     if (wasEnabled && !isEnabled) {
       await destroySDK();
       return;
@@ -266,6 +325,7 @@ export function createContentBridge(FillKitClass) {
             success: true,
             initialized,
             hasInstance: !!instance,
+            deferredWaitingForForms: !!formWatcherObserver,
           });
           break;
 

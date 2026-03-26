@@ -28,6 +28,8 @@ export default [
         sessionStorage: 'readonly',
         URL: 'readonly',
         URLSearchParams: 'readonly',
+        MutationObserver: 'readonly',
+        HTMLElement: 'readonly',
       },
     },
     rules: {

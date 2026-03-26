@@ -22,7 +22,25 @@ function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme || 'system');
 }
 
-function updateUI() {
+/**
+ * Query the active tab's content script for SDK status.
+ * Returns null if the tab has no content script (e.g. chrome:// pages).
+ */
+async function getActiveTabStatus() {
+  const api = globalThis.browser || globalThis.chrome;
+  try {
+    const [tab] = await api.tabs.query({ active: true, currentWindow: true });
+    if (!tab?.id) return null;
+    const response = await api.tabs.sendMessage(tab.id, {
+      type: MSG.GET_STATUS,
+    });
+    return response?.success ? response : null;
+  } catch {
+    return null;
+  }
+}
+
+function updateUI(tabStatus) {
   if (!currentSettings) return;
 
   applyTheme(currentSettings.theme);
@@ -35,10 +53,21 @@ function updateUI() {
 
   const enabled = currentSettings.enabled !== false;
   enableToggle.checked = enabled;
-  updateStatus(
-    enabled ? 'enabled' : 'disabled',
-    enabled ? 'Active' : 'Disabled'
-  );
+
+  const noForms = tabStatus?.deferredWaitingForForms === true;
+
+  if (noForms && enabled) {
+    updateStatus('no-forms', 'No Forms');
+    enableToggle.disabled = true;
+    seedInput.disabled = true;
+  } else {
+    enableToggle.disabled = false;
+    seedInput.disabled = false;
+    updateStatus(
+      enabled ? 'enabled' : 'disabled',
+      enabled ? 'Active' : 'Disabled'
+    );
+  }
 }
 
 async function loadSettings() {
@@ -46,7 +75,8 @@ async function loadSettings() {
     const response = await sendMessage({ type: MSG.GET_SETTINGS });
     if (response?.success && response.settings) {
       currentSettings = response.settings;
-      updateUI();
+      const tabStatus = await getActiveTabStatus();
+      updateUI(tabStatus);
     } else {
       throw new Error('Failed to load settings');
     }
@@ -66,7 +96,8 @@ enableToggle.addEventListener('change', async () => {
     });
     if (response?.success) {
       currentSettings = response.settings;
-      updateUI();
+      const tabStatus = await getActiveTabStatus();
+      updateUI(tabStatus);
     }
   } catch (error) {
     console.error('[FillKit Popup] Toggle error:', error);
@@ -92,7 +123,8 @@ seedInput.addEventListener('change', async () => {
     });
     if (response?.success) {
       currentSettings = response.settings;
-      updateUI();
+      const tabStatus = await getActiveTabStatus();
+      updateUI(tabStatus);
     }
   } catch (error) {
     console.error('[FillKit Popup] Seed update error:', error);
@@ -114,10 +146,11 @@ const onMessage =
   globalThis.chrome?.runtime?.onMessage;
 
 if (onMessage) {
-  onMessage.addListener(message => {
+  onMessage.addListener(async message => {
     if (message.type === MSG.SETTINGS_UPDATED && message.settings) {
       currentSettings = message.settings;
-      updateUI();
+      const tabStatus = await getActiveTabStatus();
+      updateUI(tabStatus);
     }
   });
 }

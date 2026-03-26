@@ -146,6 +146,20 @@ function copyStaticAssets() {
     path.join(DIST_DIR, 'options/options.css'),
   );
 
+  // Shared welcome HTML + CSS
+  copyFile(
+    path.join(SHARED_DIR, 'ui/welcome/welcome.html'),
+    path.join(DIST_DIR, 'welcome/welcome.html'),
+  );
+  copyFile(
+    path.join(SHARED_DIR, 'ui/welcome/welcome.css'),
+    path.join(DIST_DIR, 'welcome/welcome.css'),
+  );
+  copyFile(
+    path.join(SHARED_DIR, 'ui/welcome/welcome.js'),
+    path.join(DIST_DIR, 'welcome/welcome.js'),
+  );
+
   // Shared assets (logos)
   const assetsDir = path.join(SHARED_DIR, 'assets');
   if (fs.existsSync(assetsDir)) {

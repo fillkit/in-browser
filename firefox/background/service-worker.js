@@ -11,9 +11,15 @@ const api = getBrowserAPI();
 
 // --- Install / Update ---------------------------------------------------
 
+// Set uninstall URL (runs on every SW start)
+api.runtime.setUninstallURL('https://fillkit.dev/feedback?source=firefox');
+
 api.runtime.onInstalled.addListener(async details => {
   if (details.reason === 'install') {
     await api.storage.sync.set({ [STORAGE_KEY]: DEFAULT_SETTINGS });
+    api.tabs.create({
+      url: api.runtime.getURL('welcome/welcome.html'),
+    });
   } else if (details.reason === 'update') {
     const data = await api.storage.sync.get(STORAGE_KEY);
     const saved = data[STORAGE_KEY] || {};

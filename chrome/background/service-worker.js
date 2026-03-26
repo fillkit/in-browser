@@ -8,9 +8,15 @@ import { DEFAULT_SETTINGS, mergeSettings } from '../../shared/settings.js';
 
 // --- Install / Update ---------------------------------------------------
 
+// Set uninstall URL (runs on every SW start)
+chrome.runtime.setUninstallURL('https://fillkit.dev/feedback?source=chrome');
+
 chrome.runtime.onInstalled.addListener(async details => {
   if (details.reason === 'install') {
     await chrome.storage.sync.set({ [STORAGE_KEY]: DEFAULT_SETTINGS });
+    chrome.tabs.create({
+      url: chrome.runtime.getURL('welcome/welcome.html'),
+    });
   } else if (details.reason === 'update') {
     const data = await chrome.storage.sync.get(STORAGE_KEY);
     const saved = data[STORAGE_KEY] || {};
