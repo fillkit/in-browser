@@ -46,7 +46,10 @@ export function createContentBridge(FillKitClass) {
           ) {
             teardownFormWatcher();
             initSDK().catch(err =>
-              console.error('[FillKit Extension] Form watcher init failed:', err)
+              console.error(
+                '[FillKit Extension] Form watcher init failed:',
+                err
+              )
             );
             return;
           }
