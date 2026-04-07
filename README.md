@@ -22,10 +22,10 @@ FillKit reads page structure, labels, and surrounding context to detect what eac
 
 ## Install
 
-| Browser | Link                                                                       |
-| ------- | -------------------------------------------------------------------------- |
+| Browser | Link                                                                                                  |
+| ------- | ----------------------------------------------------------------------------------------------------- |
 | Chrome  | [Chrome Web Store](https://chromewebstore.google.com/detail/fillkit/lajjifnmncbjbdkcakmbikjanofilmld) |
-| Firefox | [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/fillkit/) |
+| Firefox | [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/fillkit/)                            |
 
 ## Repository Structure
 
