@@ -1,0 +1,127 @@
+<svg width="1400" height="560" viewBox="0 0 1400 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="accentFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e40af" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#1e40af" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- White background -->
+  <rect width="1400" height="560" fill="#ffffff"/>
+
+  <!-- Subtle top accent gradient -->
+  <rect width="1400" height="240" fill="url(#accentFade)"/>
+
+  <!-- Fine grid -->
+  <g stroke="#1e40af" stroke-width="0.5" opacity="0.05">
+    <line x1="0" y1="112" x2="1400" y2="112"/>
+    <line x1="0" y1="224" x2="1400" y2="224"/>
+    <line x1="0" y1="336" x2="1400" y2="336"/>
+    <line x1="0" y1="448" x2="1400" y2="448"/>
+    <line x1="280" y1="0" x2="280" y2="560"/>
+    <line x1="560" y1="0" x2="560" y2="560"/>
+    <line x1="840" y1="0" x2="840" y2="560"/>
+    <line x1="1120" y1="0" x2="1120" y2="560"/>
+  </g>
+
+  <!-- Logo mark (centered) -->
+  <g transform="translate(628, 28) scale(0.72)">
+    <g stroke="#1e40af" stroke-width="10" stroke-linecap="round" fill="none">
+      <line x1="10" y1="10" x2="190" y2="140"/>
+      <line x1="190" y1="10" x2="10" y2="140"/>
+    </g>
+    <circle fill="#1e40af" cx="100" cy="75" r="28"/>
+    <g stroke="white" stroke-width="3" stroke-linecap="round">
+      <line x1="89" y1="68" x2="111" y2="68"/>
+      <line x1="89" y1="75" x2="111" y2="75"/>
+      <line x1="89" y1="82" x2="111" y2="82"/>
+    </g>
+  </g>
+
+  <!-- Product name -->
+  <text x="700" y="168" text-anchor="middle"
+        font-family="'Geist Mono', 'SF Mono', 'Consolas', monospace"
+        font-size="48" font-weight="700" letter-spacing="0.06em"
+        fill="#0f172a">
+    <tspan>Fill</tspan><tspan font-weight="800">Kit</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="700" y="198" text-anchor="middle"
+        font-family="'Geist', -apple-system, sans-serif"
+        font-size="18" fill="#64748b" letter-spacing="0.02em">
+    Realistic form autofill for developers
+  </text>
+
+  <!-- Divider -->
+  <line x1="640" y1="220" x2="760" y2="220" stroke="#1e40af" stroke-width="1.5" opacity="0.2"/>
+
+  <!-- Trust badges (row 1: three badges) -->
+  <g font-family="'Geist Mono', 'SF Mono', monospace" font-size="14" letter-spacing="0.05em">
+    <g transform="translate(200, 245)">
+      <!-- Open Source -->
+      <rect x="0" y="0" width="310" height="50" fill="#f0f4ff" stroke="#dbe4f8" stroke-width="0.5" rx="3"/>
+      <rect x="0" y="0" width="4" height="50" fill="#1e40af" rx="2"/>
+      <text x="20" y="22" font-weight="700" fill="#1e40af">OPEN SOURCE</text>
+      <text x="20" y="38" font-size="11" font-weight="400" fill="#64748b" font-family="'Geist', sans-serif">Inspect every line of code</text>
+
+      <!-- 100% Local -->
+      <rect x="330" y="0" width="310" height="50" fill="#f0f4ff" stroke="#dbe4f8" stroke-width="0.5" rx="3"/>
+      <rect x="330" y="0" width="4" height="50" fill="#1e40af" rx="2"/>
+      <text x="350" y="22" font-weight="700" fill="#1e40af">100% LOCAL</text>
+      <text x="350" y="38" font-size="11" font-weight="400" fill="#64748b" font-family="'Geist', sans-serif">No data leaves your browser</text>
+
+      <!-- No Tracking -->
+      <rect x="660" y="0" width="310" height="50" fill="#f0f4ff" stroke="#dbe4f8" stroke-width="0.5" rx="3"/>
+      <rect x="660" y="0" width="4" height="50" fill="#1e40af" rx="2"/>
+      <text x="680" y="22" font-weight="700" fill="#1e40af">NO TRACKING</text>
+      <text x="680" y="38" font-size="11" font-weight="400" fill="#64748b" font-family="'Geist', sans-serif">Zero analytics or telemetry</text>
+    </g>
+
+    <!-- Trust badges (row 2) -->
+    <g transform="translate(200, 310)">
+      <!-- Opt-in Cloud AI -->
+      <rect x="0" y="0" width="450" height="50" fill="#fefce8" stroke="#fde68a" stroke-width="0.5" rx="3"/>
+      <rect x="0" y="0" width="4" height="50" fill="#d97706" rx="2"/>
+      <text x="20" y="22" font-weight="700" fill="#92400e">OPT-IN CLOUD AI</text>
+      <text x="20" y="38" font-size="11" font-weight="400" fill="#92400e" opacity="0.7"
+            font-family="'Geist', sans-serif">Smart field detection &amp; contextual data</text>
+
+      <!-- 150+ Fields -->
+      <rect x="470" y="0" width="240" height="50" fill="#f0f4ff" stroke="#dbe4f8" stroke-width="0.5" rx="3"/>
+      <rect x="470" y="0" width="4" height="50" fill="#1e40af" rx="2"/>
+      <text x="490" y="22" font-weight="700" fill="#1e40af">150+ FIELDS</text>
+      <text x="490" y="38" font-size="11" font-weight="400" fill="#64748b" font-family="'Geist', sans-serif">Every input type covered</text>
+
+      <!-- 50+ Locales -->
+      <rect x="730" y="0" width="240" height="50" fill="#f0f4ff" stroke="#dbe4f8" stroke-width="0.5" rx="3"/>
+      <rect x="730" y="0" width="4" height="50" fill="#1e40af" rx="2"/>
+      <text x="750" y="22" font-weight="700" fill="#1e40af">50+ LOCALES</text>
+      <text x="750" y="38" font-size="11" font-weight="400" fill="#64748b" font-family="'Geist', sans-serif">Locale-matched data</text>
+    </g>
+  </g>
+
+  <!-- Feature summary -->
+  <text x="700" y="405" text-anchor="middle"
+        font-family="'Geist Mono', monospace"
+        font-size="12" fill="#94a3b8" letter-spacing="0.08em">
+    VALID &amp; INVALID MODES  ·  CONTEXT-AWARE  ·  NAMES · EMAILS · ADDRESSES · CARDS · AND MORE
+  </text>
+
+  <!-- CTA tagline -->
+  <text x="700" y="445" text-anchor="middle"
+        font-family="'Geist', -apple-system, sans-serif"
+        font-size="20" fill="#0f172a" font-weight="500">
+    Stop typing fake data. Start filling forms in one click.
+  </text>
+
+  <!-- URL -->
+  <text x="700" y="505" text-anchor="middle"
+        font-family="'Geist Mono', monospace"
+        font-size="16" fill="#1e40af" letter-spacing="0.04em" font-weight="600">
+    fillkit.dev
+  </text>
+
+  <!-- Bottom accent bar -->
+  <rect x="0" y="548" width="1400" height="12" fill="#1e40af"/>
+</svg>
