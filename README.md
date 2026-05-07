@@ -143,4 +143,4 @@ Built on [@fillkit/core](https://www.npmjs.com/package/@fillkit/core) — the sa
 
 ## License
 
-[MIT](./LICENSE)
+Released under the [MIT License](./LICENSE).
